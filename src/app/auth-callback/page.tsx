@@ -1,3 +1,4 @@
+"use client"
 import AuthCallback from "@/components/AuthCallback";
 import { Loader2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
