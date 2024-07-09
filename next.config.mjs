@@ -6,13 +6,23 @@ const nextConfig = {
     return config;
   },
   // reactStrictMode: true,
+
   experimental: {
     turbo: {
       resolveAlias: {
         canvas: "./empty-module.ts",
       },
     },
-    missingSuspenseWithCSRBailout: false,
+  },
+
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "gravatar.com",
+        port: "",
+      },
+    ],
   },
 };
 
