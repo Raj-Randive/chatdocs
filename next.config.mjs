@@ -13,6 +13,7 @@ const nextConfig = {
         canvas: "./empty-module.ts",
       },
     },
+    missingSuspenseWithCSRBailout: false,
   },
 
   images: {
