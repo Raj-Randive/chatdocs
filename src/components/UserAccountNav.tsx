@@ -17,6 +17,7 @@ interface UserAccountNavProps {
 const UserAccountNav = async ({ email, imageUrl, name }: UserAccountNavProps) => {
 
     const subscriptionPlan = await getUserSubscriptionPlan();
+    console.log(imageUrl);
 
     return (
         <DropdownMenu>
@@ -25,15 +26,22 @@ const UserAccountNav = async ({ email, imageUrl, name }: UserAccountNavProps) =>
 
                 <Button className="rounded-full h-8 w-8 aspect-square bg-slate-400">
                     <Avatar className="relative w-8 h-8">
+
                         {imageUrl ? (
                             <div className="relative aspect-square h-full w-full">
 
-                                <Image
+                                {/* <Image
                                     fill
                                     src={imageUrl}
                                     alt="profile picture"
                                     referrerPolicy="no-referrer"
-                                />
+                                /> */}
+                                <AvatarFallback>
+                                    <span className="sr-only">
+                                        {name}
+                                    </span>
+                                    <Icon.user className="h-4 w-4 text-zinc-900" />
+                                </AvatarFallback>
 
                             </div>
                         ) : (
