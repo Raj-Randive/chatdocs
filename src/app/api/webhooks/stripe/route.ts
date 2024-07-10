@@ -35,7 +35,6 @@ export async function POST(request: Request) {
       session.subscription as string
     );
 
-    // If the user buys the plan for the first time, add that user to the database.
     await db.user.update({
       where: {
         id: session.metadata.userId,
@@ -57,7 +56,6 @@ export async function POST(request: Request) {
       session.subscription as string
     );
 
-    // Update the user to the database.
     await db.user.update({
       where: {
         stripeSubscriptionId: subscription.id,
