@@ -12,13 +12,15 @@ import { Progress } from "./ui/progress";
 import { useToast } from "./ui/use-toast";
 
 // DROPZONE COMPONENT
-const UploadDropzone = () => {
+const UploadDropzone = ({ isSubscribed }: { isSubscribed: boolean }) => {
 
     // HOOKS ****************************************************
     // Loading animation for uploading the file
     const [isUploading, setIsUploading] = useState<boolean>(false);
     const [uploadProgress, setUploadProgress] = useState<number>(0);
-    const { startUpload } = useUploadThing("pdfUploader")
+    const { startUpload } = useUploadThing(
+        isSubscribed ? "proPlanUploader" : "freePlanUploader"
+    )
     const { toast } = useToast();
     const router = useRouter();
 
@@ -106,7 +108,7 @@ const UploadDropzone = () => {
                                     or drag and drop
                                 </p>
                                 <p className="text-xs text-zinc-500">
-                                    PDF (up to 4MB)
+                                    PDF (up to {isSubscribed ? "16" : "4"}MB)
                                 </p>
                             </div>
 
@@ -159,8 +161,10 @@ const UploadDropzone = () => {
 }
 
 
-const UploadButton = () => {
+const UploadButton = ({ isSubscribed }: { isSubscribed: boolean }) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+
+
 
     return (
         <Dialog open={isOpen} onOpenChange={(visible: boolean) => {
@@ -174,7 +178,7 @@ const UploadButton = () => {
 
             <DialogContent>
 
-                <UploadDropzone />
+                <UploadDropzone isSubscribed={isSubscribed} />
 
             </DialogContent>
 
